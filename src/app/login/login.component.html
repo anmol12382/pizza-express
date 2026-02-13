@@ -1,0 +1,53 @@
+<div class="login-container">
+
+    <div class="image-section">
+    <img
+      src="https://www.pizzaexpress.nz/storage/2024/03/pizza-express-logo-squar-white-400x275.png"
+      alt="Pizza"
+      class="pizza-image"
+    />
+  </div>
+
+  <div class="login-form">
+
+<form [formGroup]="profileForm" (ngSubmit)="submitData()" >
+
+  <div class="form-group">
+  <p>Enter Name:</p>
+  <input type="text" placeholder="enter username" formControlName = "name">
+  <span *ngIf="name?.hasError('required')"></span>
+  <span class="error" *ngIf="name?.invalid && (name?.dirty || name?.touched)">Please enter username</span>
+  </div>  
+
+  <br><br>
+
+  <div class="form-group">
+  <p>Enter Password:</p>
+  <input type="text" placeholder="enter password" formControlName = "password">
+  <span *ngIf="password?.hasError('required')"></span>
+  <span class="error" *ngIf="password?.invalid && (password?.dirty || password?.touched)">Please enter valid password</span>
+  
+  </div>  
+
+  <br><br>
+
+  <div class="form-group">
+  <p>Enter Email:</p>
+  <input type="text" placeholder="enter email" formControlName = "email">
+  <span *ngIf="email?.hasError('required')"></span>
+  <span class="error" *ngIf="email?.invalid && (email?.dirty || email?.touched)">Please enter valid email</span>
+  </div>
+
+  <br><br>
+
+  <button>Submit</button>
+  
+
+</form>
+</div>
+
+</div>
+
+
+
+

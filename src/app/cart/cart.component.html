@@ -1,0 +1,43 @@
+<div class="cart-page">
+
+  <h2 class="cart-title">Your Cart</h2>
+
+  <p class="empty" *ngIf="cartItems.length === 0">
+    Your cart is empty 🍕
+  </p>
+
+
+  <div class="cart-list">
+    <div class="cart-card" *ngFor="let item of cartItems">
+
+      <div class="cart-left">
+        <h3>{{ item.pizza.name }}</h3>
+        <p class="type">{{ item.pizza.type | uppercase }}</p>
+        <p class="price">₹{{ item.pizza.price }}</p>
+      </div>
+
+      <div class="cart-right">
+        <div class="counter">
+          <button (click)="decrease(item.pizza.id)">−</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="increase(item.pizza.id)">+</button>
+        </div>
+
+        <p class="item-total">
+          ₹{{ item.pizza.price * item.quantity }}
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  
+  <div class="checkout-box" *ngIf="cartItems.length > 0">
+    <h3>Total Amount: <span>₹{{ totalAmount }}</span></h3>
+
+    <button class="checkout-btn" (click)="checkout()">
+      Proceed to Checkout
+    </button>
+  </div>
+
+</div>

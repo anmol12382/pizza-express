@@ -1,0 +1,58 @@
+<div class="pizza-page">
+
+
+  <h2 class="page-title" style="color: white;">Enter the details of pizzas</h2>
+
+  <div class="form-card">
+    
+    <input placeholder="Name of pizza" [(ngModel)]="pizza.name">
+
+    <select [(ngModel)]="pizza.type">
+      <option value="veg">Veg</option>
+      <option value="non-veg">Non Veg</option>
+    </select>
+
+    <input placeholder="Ingredients" [(ngModel)]="pizza.ingredients">
+    <input placeholder="Toppings" [(ngModel)]="pizza.toppings">
+    <input type="number" placeholder="Price" [(ngModel)]="pizza.price">
+    
+
+    <button class="add-btn" (click)="addPizza()">Add Pizza</button>
+  </div>
+
+  <div class="filter-bar">
+    <select (change)="onFilterChange($event)">
+      <option value="all">All Pizzas</option>
+      <option value="veg">Veg Only</option>
+      <option value="non-veg">Non Veg Only</option>
+    </select>
+  </div>
+
+  <div class="pizza-grid">
+    <div class="pizza-card" *ngFor="let p of filteredPizzas">
+      
+
+
+      <div class="pizza-info">
+        <h3>{{ p.name }}</h3>
+
+        <span class="badge" [class.veg]="p.type==='veg'" 
+                            [class.nonveg]="p.type==='non-veg'">
+                            {{ p.type }}
+        </span>
+
+        <p><b>Ingredients:</b> {{ p.ingredients }}</p>
+        <p><b>Toppings:</b> {{ p.toppings }}</p>
+
+        <div class="price">₹{{ p.price }}</div>
+      </div>
+
+      <div class="card-actions">
+        <button class="cart-btn" (click)="addToCart(p)">Add to Cart</button>
+        <button class="delete-btn" (click)="deletePizza(p.id)">Delete</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>

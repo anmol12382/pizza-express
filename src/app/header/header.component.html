@@ -1,0 +1,22 @@
+<nav class="navbar">
+    <h2>Pizza Express</h2>
+<ul>
+    <li>
+    <a routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/">Login</a>
+  </li>
+  <li>
+    <a routerLinkActive="active" routerLink="/pizzas">Pizzas</a>
+  </li>
+  <li>
+    <a routerLinkActive="active" routerLink="/customize">Customize</a>
+  </li>
+  <li>
+    <a routerLink="/cart" class="cart-icon">
+  🛒 Cart
+  <span class="badge" *ngIf="(cartCount$ | async) as count">
+    <span *ngIf="count > 0">{{ count }}</span>
+  </span>
+</a>
+  </li>
+</ul>
+</nav>
