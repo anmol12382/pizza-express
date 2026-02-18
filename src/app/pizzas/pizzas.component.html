@@ -5,16 +5,46 @@
 
   <div class="form-card">
     
-    <input placeholder="Name of pizza" [(ngModel)]="pizza.name">
+    <!--<input placeholder="Name of pizza" [(ngModel)]="pizza.name">-->
+    <select [(ngModel)]="pizza.name" (change)="onPizzaSelect(pizza.name)">
+  <option value="">Select Pizza</option>
+  <option *ngFor="let p of pizzaMenu" [value]="p.name">
+    {{ p.name }}
+  </option>
+  </select>
 
-    <select [(ngModel)]="pizza.type">
+
+    <!--<select [(ngModel)]="pizza.type">
       <option value="veg">Veg</option>
       <option value="non-veg">Non Veg</option>
-    </select>
+    </select>-->
+    <select [(ngModel)]="pizza.type" disabled>
+  <option value="veg">Veg</option>
+  <option value="non-veg">Non Veg</option>
+</select>
 
-    <input placeholder="Ingredients" [(ngModel)]="pizza.ingredients">
-    <input placeholder="Toppings" [(ngModel)]="pizza.toppings">
-    <input type="number" placeholder="Price" [(ngModel)]="pizza.price">
+
+    <!--<input placeholder="Ingredients" [(ngModel)]="pizza.ingredients">-->
+    <label>Ingredients:</label>
+<div *ngFor="let ing of ingredientsList">
+  <input type="checkbox"
+         [value]="ing"
+         (change)="toggleSelection(pizza.ingredients, ing)">
+  {{ ing }}
+</div>
+
+    <!--<input placeholder="Toppings" [(ngModel)]="pizza.toppings">-->
+    <label>Toppings:</label>
+<div *ngFor="let top of toppingsList">
+  <input type="checkbox"
+         [value]="top"
+         (change)="toggleSelection(pizza.toppings, top)">
+  {{ top }}
+</div>
+
+    <!--<input type="number" placeholder="Price" [(ngModel)]="pizza.price">-->
+    <input type="number" [value]="pizza.price" readonly>
+
     
 
     <button class="add-btn" (click)="addPizza()">Add Pizza</button>
